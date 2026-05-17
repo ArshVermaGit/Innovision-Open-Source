@@ -73,24 +73,10 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const trimmedEmail = email?.trim() || "";
-    const trimmedMessage = message?.trim() || "";
-
-    if (!trimmedEmail) {
-      toast.error("Email cannot be empty or whitespace-only.");
-      return;
-    }
-
-    if (!trimmedMessage) {
-      toast.error("Message cannot be empty or whitespace-only.");
-      return;
-    }
-
     formRef.current.setAttribute("disabled", "true");
 
     // Only clear form and show success after email is actually sent
-    const formData = { email: trimmedEmail, message: trimmedMessage };
+    const formData = { email, message };
     sendEmail(formData);
 
     // Clear form fields immediately for better UX
@@ -98,7 +84,7 @@ export default function ContactPage() {
     setMessage("");
     toast.success("Message sent successfully!", { type: "success" });
     setTimeout(() => {
-      if (formRef.current) formRef.current.removeAttribute("disabled");
+      formRef.current.removeAttribute("disabled");
     }, 2000);
   };
 

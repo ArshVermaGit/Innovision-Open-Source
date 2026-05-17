@@ -169,7 +169,7 @@ export default function Page() {
       return;
     }
 
-    if (!curriculumData.subject?.trim()) {
+    if (!curriculumData.subject) {
       toast.error("Please select a subject");
       return;
     }
@@ -259,7 +259,7 @@ export default function Page() {
       return;
     }
 
-    if (!engineeringData.college?.trim() || !engineeringData.branch?.trim() || !engineeringData.semester?.trim() || !engineeringData.subject?.trim()) {
+    if (!engineeringData.college || !engineeringData.branch || !engineeringData.semester || !engineeringData.subject) {
       toast.error("Please fill all required fields");
       return;
     }
@@ -341,7 +341,7 @@ export default function Page() {
   };
 
   const formSchema = z.object({
-    concept: z.string().trim().min(2, { message: "Concept must be at least 2 characters long (excluding whitespace)" }).max(300, {
+    concept: z.string().min(2, { message: "Concept must be at least 2 characters long" }).max(300, {
       message: "Concept must not exceed 300 characters.",
     }),
     knowledgeLevel: z.enum(["beginner", "intermediate", "advanced"], {

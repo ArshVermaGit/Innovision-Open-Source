@@ -1,6 +1,6 @@
+import React from 'react';
 import MarkDown from "../MarkDown";
 import { Clock } from "lucide-react";
-import DOMPurify from "isomorphic-dompurify";
 
 // Calculate reading time for a single topic
 const calculateTopicReadingTime = (topic) => {
@@ -72,13 +72,12 @@ const Content = ({ currentTopic }) => {
                             );
                         case "para":
                             return (
-                                <p
+                                <div
                                     key={index}
                                     className="mb-4 leading-relaxed"
-                                    dangerouslySetInnerHTML={{
-                                        __html: DOMPurify.sanitize(item.content),
-                                    }}
-                                ></p>
+                                >
+                                    <MarkDown content={item.content} />
+                                </div>
                             );
                         case "code":
                             return (

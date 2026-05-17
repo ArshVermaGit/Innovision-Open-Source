@@ -57,28 +57,9 @@ export default function CreateProjectPage() {
       return;
     }
 
-    const trimmedTitle = formData.title?.trim() || "";
-    const trimmedDescription = formData.description?.trim() || "";
-
-    if (!trimmedTitle) {
-      alert("Project title cannot be empty or whitespace-only.");
-      return;
-    }
-
-    if (!trimmedDescription) {
-      alert("Project description cannot be empty or whitespace-only.");
-      return;
-    }
-
     setProjectLoading(true);
     try {
-      const projectData = {
-        ...formData,
-        title: trimmedTitle,
-        description: trimmedDescription
-      };
-      
-      const project = await createProject(user.email, projectData);
+      const project = await createProject(session.user.email, formData);
       if (project && project.id) {
         router.push(`/features/projects/${project.id}`);
       } else {

@@ -29,7 +29,7 @@ This document summarizes important security practices, immediate remediation ite
 
 ## Input handling & XSS
 - Sanitize and validate user input, especially Markdown and any HTML-like content.
-- Use `rehype-sanitize` or `DOMPurify` to clean HTML output before rendering.
+- Use `react-markdown` (via the `<Markdown>` component) which natively escapes HTML to prevent XSS. Do not use `dangerouslySetInnerHTML`.
 
 ## Uploads & ingestion
 - Validate file types and sizes; scan uploads for malware when possible.
