@@ -5,9 +5,28 @@ const DB_NAME = "InnoVisionOffline";
 const DB_VERSION = 1;
 
 /**
+ * Check if IndexedDB is available (blocked in private/incognito mode)
+ */
+export async function isIndexedDBAvailable() {
+  try {
+    const testDB = await openDB("__idb_test__", 1);
+    testDB.close();
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+/**
  * Initialize IndexedDB for offline storage
  */
 export async function initOfflineDB() {
+  const available = await isIndexedDBAvailable();
+  if (!available) {
+    throw new Error(
+      "Offline storage is not available in private/incognito mode. Please switch to a regular browser window to use offline features."
+    );
+  }
   return openDB(DB_NAME, DB_VERSION, {
     upgrade(db) {
       // Courses store
