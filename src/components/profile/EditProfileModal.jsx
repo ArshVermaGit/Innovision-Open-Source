@@ -51,6 +51,13 @@ export default function EditProfileModal({ open, onOpenChange, user, onUpdate })
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const trimmedName = formData.name?.trim() || "";
+    if (!trimmedName) {
+      alert("Name cannot be empty or whitespace-only.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -58,8 +65,8 @@ export default function EditProfileModal({ open, onOpenChange, user, onUpdate })
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: formData.name,
-          bio: formData.bio,
+          name: trimmedName,
+          bio: formData.bio?.trim() || "",
           socialLinks: {
             github: formData.github,
             linkedin: formData.linkedin,

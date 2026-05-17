@@ -18,6 +18,20 @@ export default function FeedbackPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const trimmedName = formData.name?.trim() || "";
+    const trimmedMessage = formData.message?.trim() || "";
+
+    if (!trimmedName) {
+      alert("Name cannot be empty or whitespace-only.");
+      return;
+    }
+
+    if (!trimmedMessage) {
+      alert("Message cannot be empty or whitespace-only.");
+      return;
+    }
+
     alert("Thank you for your feedback!");
     setFormData({ name: "", email: "", message: "" });
   };
