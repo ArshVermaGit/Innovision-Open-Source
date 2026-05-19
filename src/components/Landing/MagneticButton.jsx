@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 
-const MagneticButton = ({ children, className = "", strength = 0.3 }) => {
+const MagneticButton = ({ children, className = "", strength = 0.08}) => {
   const ref = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -12,11 +12,13 @@ const MagneticButton = ({ children, className = "", strength = 0.3 }) => {
     const centerY = rect.top + rect.height / 2;
     const x = (e.clientX - centerX) * strength;
     const y = (e.clientY - centerY) * strength;
-    setPosition({ x, y });
+    ref.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
   };
 
   const handleMouseLeave = () => {
-    setPosition({ x: 0, y: 0 });
+    if (!ref.current) return;
+
+    ref.current.style.transform = "translate3d(0px, 0px, 0px)";
   };
 
   return (
@@ -26,8 +28,9 @@ const MagneticButton = ({ children, className = "", strength = 0.3 }) => {
       onMouseLeave={handleMouseLeave}
       className={className}
       style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        transition: position.x === 0 ? "transform 0.5s ease-out" : "transform 0.1s ease-out",
+        
+        transition: "transform 0.2s ease-out",
+        willChange: "transform",
       }}
     >
       {children}

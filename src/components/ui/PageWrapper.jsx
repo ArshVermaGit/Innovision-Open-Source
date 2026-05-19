@@ -215,8 +215,9 @@ export const FloatingButton = ({ children, className = "", onClick }) => {
       onMouseLeave={handleMouseLeave}
       className={className}
       style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        transition: position.x === 0 ? "transform 0.4s ease-out" : "transform 0.1s ease-out",
+        transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+        transition:  "transform 0.2s ease-out",
+        willChange: "transform",
       }}
     >
       {children}
