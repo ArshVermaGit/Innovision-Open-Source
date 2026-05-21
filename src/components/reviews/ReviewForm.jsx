@@ -89,7 +89,7 @@ const ReviewForm = ({ courseId, existingReview, onReviewSubmitted, onCancel }) =
               value={reviewText}
               onChange={(e) => setReviewText(e.target.value)}
               placeholder="Share your experience with this course..."
-              className="min-h-30 resize-none"
+              className="min-h-32 resize-none"
               maxLength={maxChars}
             />
             <div className="flex justify-between text-xs text-muted-foreground">

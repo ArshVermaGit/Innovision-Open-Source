@@ -52,7 +52,7 @@ const ReviewList = ({ courseId, onEditReview, onReviewDeleted, onReviewsUpdated,
   const fetchReviews = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/reviews?courseId=${courseId}&sortBy=${sortBy}`);
+      const response = await fetch(`/api/reviews/${courseId}?sortBy=${sortBy}`);
       const data = await response.json();
 
       console.log("Reviews API response:", response.status, data);
@@ -389,7 +389,7 @@ const ReviewList = ({ courseId, onEditReview, onReviewDeleted, onReviewsUpdated,
             value={reportReason}
             onChange={(e) => setReportReason(e.target.value)}
             placeholder="Describe why this review should be reported..."
-            className="w-full min-h-25 p-3 border rounded-md resize-none"
+            className="w-full min-h-32 p-3 border rounded-md resize-none"
             maxLength={500}
           />
           <AlertDialogFooter>

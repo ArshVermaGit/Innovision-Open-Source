@@ -10,7 +10,7 @@ export async function POST(request, { params }) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    const { reviewId } = params;
+    const { id: reviewId } = await params;
     const { reason } = await request.json();
 
     if (!reviewId) {

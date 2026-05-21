@@ -20,7 +20,7 @@ const CourseReviews = ({ courseId }) => {
 
   const fetchUserReview = async () => {
     try {
-      const response = await fetch(`/api/reviews?courseId=${courseId}`);
+      const response = await fetch(`/api/reviews/${courseId}`);
       const data = await response.json();
 
       if (response.ok && data.reviews) {
