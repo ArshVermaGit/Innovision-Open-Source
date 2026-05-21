@@ -240,7 +240,7 @@ const Navbar = () => {
             {user && <NotificationBell />}
 
             {/* Theme Toggle - Always visible */}
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="h-8 w-8 sm:h-9 sm:w-9 rounded-full hover:bg-muted text-foreground">
+            <Button variant="ghost" size="icon" onClick={toggleTheme} className="h-8 w-8 sm:h-9 sm:w-9 rounded-full hover:bg-muted text-foreground" aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}>
               {theme === "light" ? <Moon className="h-4 w-4 sm:h-4 sm:w-4" /> : <Sun className="h-4 w-4 sm:h-4 sm:w-4" />}
             </Button>
 
@@ -252,6 +252,7 @@ const Navbar = () => {
                   size="icon"
                   onClick={toggleNightMode}
                   className={`h-8 w-8 sm:h-9 sm:w-9 rounded-full hover:bg-muted ${nightMode ? 'text-amber-400' : 'text-foreground'}`}
+                  aria-label={nightMode ? "Disable night mode" : "Enable night mode"}
                 >
                   <MoonStar className={`h-4 w-4 sm:h-4 sm:w-4 ${nightMode ? 'fill-amber-400' : ''}`} />
                 </Button>
@@ -287,6 +288,7 @@ const Navbar = () => {
               variant="ghost"
               size="icon"
               className="md:hidden h-8 w-8 sm:h-9 sm:w-9 rounded-full hover:bg-muted text-foreground"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

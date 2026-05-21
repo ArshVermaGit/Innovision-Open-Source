@@ -75,7 +75,7 @@ const UserMenu = ({
       {/* Settings Dropdown */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9 rounded-full hover:bg-muted text-foreground">
+          <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9 rounded-full hover:bg-muted text-foreground" aria-label="Open settings">
             <Settings className="h-4 w-4 sm:h-4 sm:w-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -133,14 +133,14 @@ const UserMenu = ({
                 variant="ghost"
                 size="sm"
                 onClick={toggleNightMode}
-                className={`h-8 w-8 p-0 ${nightMode ? 'text-amber-500' : ''}`}
+                aria-label={nightMode ? "Disable night mode" : "Enable night mode"}
               >
                 <MoonStar className={`h-4 w-4 ${nightMode ? 'fill-amber-500' : ''}`} />
               </Button>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm">Theme</span>
-              <Button variant="ghost" size="sm" onClick={toggleTheme} className="h-8 w-8 p-0">
+              <Button variant="ghost" size="sm" onClick={toggleTheme} className="h-8 w-8 p-0" aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}>
                 {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
               </Button>
             </div>
